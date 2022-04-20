@@ -26,40 +26,44 @@ import java.util.Scanner;
 
 public class Question1002 {
 
-    static int coordinateDistin(int[] testCase) {
+    static int coordinateDistin(double[] testCase) {
 
         // x1 y1 r1 조규현
-        final int X1 = testCase[0];
-        final int Y1 = testCase[1];
-        final int R1 = testCase[2];
+        final double X1 = testCase[0];
+        final double Y1 = testCase[1];
+        final double R1 = testCase[2];
 
         // x2 y2 r2 백승환
-        final int X2 = testCase[3];
-        final int Y2 = testCase[4];
-        final int R2 = testCase[5];
+        final double X2 = testCase[3];
+        final double Y2 = testCase[4];
+        final double R2 = testCase[5];
 
-        int result = 0;
+        int result = -2;
 
-        // 제곱하면 루트가 벗겨져 지니 정수형으로 형변환한다.
-        double sub_abs_xy_pow = (double) Math.pow(X1 - X2, 2) + (double) Math.pow(Y1 - Y2, 2);// xy차의 제곱을 이용하기위한 변수
-        double sub_abs_xy_pow_sqrt = Math.sqrt(sub_abs_xy_pow);
+        double distance_pow = (double) Math.pow(X1 - X2, 2) + (double) Math.pow(Y1 - Y2, 2);// 두점 XY1, XY2의 거리 제곱
+        double distance = Math.sqrt(distance_pow);// 두점 XY1, XY2의 거리
 
-        double sub_abs_r_pow = (double) Math.pow(R1 - R2, 2);// 같은 일직선에 외분점에 있을 경우 거리차이와 좌표 차이와 비교하기 위한 변수
-        double sub_abs_r_pow_sqrt = Math.sqrt(sub_abs_r_pow);
+        double sub_abs_r = (double) Math.abs(R1 - R2);// |R1 - R2| 두거리의 차를 이용하여 원의 위치관계를 알기 위한 변수
+        double sum_r = R1 + R2;
 
-        if (X1 == X2 && Y1 == Y2 && R1 > 0 && R2 > 0) {// 조규현과 백승환의 xy좌표가 같은 경우
+        if (distance > sum_r || distance == 0 && R1 != R2 || distance < sub_abs_r) {// d > R1+R2 or d < |R1-R2| or d = 0
+                                                                                    // R1 != R2 -> 두원이 절대 만나지 않는 경우
 
-            result = (X1 == X2 && Y1 == Y2 && R1 == R2) ? -1 : 0;// 서로 좌표 같고 거리가 같으면 류재명의 위치가
-                                                                 // 무한이므로 -1 리턴
+            result = 0;
 
-        } else if (sub_abs_xy_pow_sqrt == R1 + R2 || sub_abs_xy_pow == sub_abs_r_pow_sqrt) {// 조규현과 백승환의 같은 일직선상에 있을때
-            // ex) (0,0), (3,4) -> 두점을 이은 일직선위에 류재명이 있을 경우
-            result = 1;
+        } else if (distance == sum_r || distance == sub_abs_r) {// d = R1 + R2 or d = |R1 - R2| 외접 ,내접 -> 한점으로 만날 경우
 
-        } else {// 조규현과 백승환의 xy좌표가 서로 다른경우
+            // R1 = R2, R1 > 0 R2 > 0 -> 외접 OR
+            // 내접 한다는 조건을 만족시키면서
+            // 위치가 무한일 경우는 동일한 원이라는 의미 -1
+            // 주의 할 점은 3명이 모두 같은 지점에 있을 경우이다 이 경우에는 한곳에서 만나므로 위치
+            // 수가
+            // 1이다.
+            result = (distance == 0 && sub_abs_r == 0 && R1 > 0 && R2 > 0) ? -1 : 1;
+
+        } else if (distance > sub_abs_r && distance < sum_r) {// |R1 - R2| < d < R1 + R2 ->두점으로 만날 경우
 
             result = 2;
-
         }
 
         return result;
@@ -72,7 +76,7 @@ public class Question1002 {
         final int TEST_CASE_NUM = input.nextInt();// 테스트 케이스 갯수
         final int REQUIRE_VALUE_NUM = 6;// 테스트 케이스 안에 필요한 값 갯수
 
-        final int[][] TEST_CASE = new int[TEST_CASE_NUM][REQUIRE_VALUE_NUM];// 테스트 케이스 데이터
+        final double[][] TEST_CASE = new double[TEST_CASE_NUM][REQUIRE_VALUE_NUM];// 테스트 케이스 데이터
         final int TEST_CASE_SIZE = TEST_CASE.length;// 데이터 크기
 
         int[] result = new int[TEST_CASE_NUM];// 데이터 케이스 하나당 결과 값 배열로 저장
@@ -80,7 +84,7 @@ public class Question1002 {
         // 1. 테스트 케이스 데이터 입력
         for (int k = 0; k < TEST_CASE_SIZE; k++) {
             for (int i = 0; i < REQUIRE_VALUE_NUM; i++) {
-                TEST_CASE[k][i] = input.nextInt();
+                TEST_CASE[k][i] = input.nextDouble();
             }
         }
 
