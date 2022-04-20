@@ -47,7 +47,8 @@ public class Question1002 {
         double sum_r = R1 + R2;
 
         if (distance > sum_r || distance == 0 && R1 != R2 || distance < sub_abs_r) {// d > R1+R2 or d < |R1-R2| or d = 0
-                                                                                    // R1 != R2 -> 두원이 절대 만나지 않는 경우
+                                                                                    // R1 != R2 -> 두원이 절대 만나지 않는 경우,
+                                                                                    // 동심원일 경우, 내접하지않고 원안에 원이 있는경우
 
             result = 0;
 
