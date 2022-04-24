@@ -1,3 +1,6 @@
+//RunTime 에러
+// 문제 링크 : https://www.acmicpc.net/problem/1003
+
 import java.util.Scanner;
 
 public class Question1003 {

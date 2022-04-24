@@ -2,20 +2,19 @@ import java.util.Scanner;
 
 public class Question1003_2 {
 
-    private static int count0;
-    private static int count1;
+    private static int[][] count;
 
-    static int fibonacci(int n) {
+    static int fibonacci(int n, int k) {
 
         if (n == 0) {
-            count0++;
+            count[k][0]++;
             return 0;
         } else if (n == 1) {
-            count1++;
+            count[k][1]++;
             return 1;
         }
 
-        return fibonacci(n - 1) + fibonacci(n - 2);
+        return fibonacci(n - 1, k) + fibonacci(n - 2, k);
     }
 
     public static void main(String[] args) {
@@ -24,17 +23,10 @@ public class Question1003_2 {
 
         final int TEST_CASE_NUM = input.nextInt();
 
-        int num[] = new int[TEST_CASE_NUM];
-        int[][] count = new int[TEST_CASE_NUM][2];
+        count = new int[TEST_CASE_NUM][2];
 
         for (int i = 0; i < TEST_CASE_NUM; i++) {
-            num[i] = input.nextInt();
-            fibonacci(num[i]);
-            count[i][0] = count0;
-            count[i][1] = count1;
-
-            count0 = 0;
-            count1 = 0;
+            fibonacci(input.nextInt(), i);
         }
 
         input.close();
