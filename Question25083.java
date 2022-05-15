@@ -7,7 +7,6 @@ public class Question25083 {
         String line4 = "   `~\\/";
         String line5 = "      |";
 
-         
         System.out.println(line1+"\n"+line2+"\n"+line3+"\n"+line4+"\n"+line5+"\n"+line5);
     }
 }
