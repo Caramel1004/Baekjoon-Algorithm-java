@@ -24,6 +24,8 @@ public class Question2525 {
 
         int time = input.nextInt();// 걸리는 시간
 
+        input.close();
+
         int totalMin = startMin + time;// 시작 시간의 분과 걸리는 시간(분)의 합
 
         // ex) 120 = 60 x 2 + 0, 50 = 60 x 0 + 50
@@ -37,5 +39,6 @@ public class Question2525 {
         int endHour = (startHour + addHour) % 24;
 
         System.out.println(endHour + " " + endMin);
+
     }
 }
