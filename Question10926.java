@@ -19,5 +19,7 @@ public class Question10926 {
         String str2 = "??!";
 
         System.out.println(str1 + str2);
+
+        input.close();
     }
 }
