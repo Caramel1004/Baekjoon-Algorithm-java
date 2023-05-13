@@ -1,0 +1,32 @@
+자주쓰는 wrapper 클래스 정리
+String -> int Integer.parseInt(String str);
+int -> String Integer.toString(int num);
+int -> char Character.forDigit(int , radix);
+
+char -> int Character.getNumericValue(char cha);
+char -> String String.valueOf(char);
+
+String -> char[] str.toCharArray();
+String -> str.chars().mapToObj(ch -> (char)ch).forEach(System.out::println);
+String 배열 -> String String.join("",String[]);
+
+형변환 적극활용
+알파벳을 조사해야 하는 문제는 아스키 코드를 적극 활용하는게 좋다
+
+
+⊙ BigInteger
+
+int와 BigInteger의 차이점
+
+       int의 범위는 '-2,147,483,648~2,147,483,647'이지만
+       BigInteger의 범위는 문자열 형태로 이루어져 있어 무한이다.
+ 
+
+BigInteger 계산법
+
+      문자열 형태로 이루어져 있기에 사칙연산이 안된다.
+      따라서 BigInteger의 값을 계산을 하려면 클래스 내부의 함수를 이용해야 한다.
+ 
+      더하기 : add()      빼   기 : subtract()      곱하기 : multiply()      나누기 : divide()
+출처: https://tooo1.tistory.com/2 [개발자 퉁이리:티스토리]
+

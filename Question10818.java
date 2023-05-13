@@ -17,7 +17,7 @@
 
 import java.util.Scanner;
 
-public class Quesiont10818 {
+public class Question10818 {
 
     static int minOf(int[] arr) {
 

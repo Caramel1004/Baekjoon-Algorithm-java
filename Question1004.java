@@ -54,6 +54,8 @@ public class Question1004 {
             }
         }
 
+        in.close();
+
         return count;
     }
 
@@ -76,5 +78,6 @@ public class Question1004 {
             System.out.println(result[k]);
         }
         input.close();
+
     }
 }
