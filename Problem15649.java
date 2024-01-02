@@ -65,9 +65,20 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Problem15649 {
+
+    static String dfs(String[] arr, int idx){
+        int m = arr.length;// 배열의 길이
+        
+        ArrayList<String> tmpList = new ArrayList<String>(arr.length);
+
+        return "";
+
+    }
+
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -76,24 +87,22 @@ public class Problem15649 {
 
         int n = Integer.parseInt(st.nextToken());// 1부터 n까지 자연수
         int m = Integer.parseInt(st.nextToken());// n개중 m개 뽑아서 정렬
-        int lastIndex = (n - m);//
-        int combi = (m - 1);
 
         String[] num = new String[n];
 
         for (int i = 0; i < n; i++) {
             num[i] = Integer.toString(i + 1);
-            // System.out.println(num[i]);
+            System.out.print(num[i] + " ");
         }
 
-        // 배열 num에서 m개 뽑아서 정렬하고 문자열 형태로 저장
-        // n - m
-        for (int ptr = 0; ptr <= lastIndex; ptr++) {
-            for (int i = (ptr + 1); i < combi; i++) {
-                sb.append(num[ptr] + " ");
-                sb.append(num[ptr + 1]);
-                sb.append(num[i]);
-            }
+        ArrayList<String> list = new ArrayList<>(4);
+        System.out.println(list.size());
+        String a;
+
+        for (int i = 0; i < m; i++) {
+            sb.append(dfs(num,i));
         }
+
+        
     }
 }
